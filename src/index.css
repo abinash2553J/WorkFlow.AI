@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme (fallback if .dark not present) */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.6rem;
+  }
+
+  .dark {
+    /* Modern dark theme */
+    --background: 222 22% 9%;
+    --foreground: 210 20% 96%;
+
+    --card: 222 18% 11%;
+    --card-foreground: 210 20% 96%;
+
+    --popover: 222 22% 10%;
+    --popover-foreground: 210 20% 96%;
+
+    --primary: 221 83% 58%; /* electric blue */
+    --primary-foreground: 222 22% 9%;
+
+    --secondary: 224 18% 16%;
+    --secondary-foreground: 210 18% 92%;
+
+    --muted: 224 14% 18%;
+    --muted-foreground: 215 12% 70%;
+
+    --accent: 270 90% 66%; /* violet accent */
+    --accent-foreground: 222 22% 9%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 222 22% 9%;
+
+    --border: 223 13% 20%;
+    --input: 223 13% 20%;
+    --ring: 221 83% 58%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image: radial-gradient(ellipse at top, hsl(var(--primary)/0.08), transparent 60%),
+      radial-gradient(ellipse at bottom, hsl(var(--accent)/0.08), transparent 60%);
+  }
+}
+
+/* Custom Animations used in components */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  /* Slow spin utility using Tailwind's built-in spin keyframes */
+  .animate-spin-slow {
+    animation: spin 6s linear infinite;
+  }
+
+  /* Shimmer utility */
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Glow pulse utility */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  /* Mini line chart draw animation */
+  .chart-line {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: line-draw 1.2s ease-out forwards;
+  }
+}
+
+/* Supporting keyframes for shimmer, glow, and line draw */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 16px rgba(59, 130, 246, 0.25); }
+  50% { box-shadow: 0 0 28px rgba(59, 130, 246, 0.45); }
+}
+
+@keyframes line-draw {
+  to { stroke-dashoffset: 0; }
+}
