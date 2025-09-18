@@ -39,3 +39,5 @@ logs/
 *.pid
 *.seed
 *.pid.lock
+
+.vercel
